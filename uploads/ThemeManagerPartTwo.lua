@@ -203,6 +203,15 @@ local SaveManager = {} do
 
 		local section = tab:AddRightGroupbox('Configuration')
 
+		section:AddToggle('KeybindShower', {
+			Text = 'Show Keybinds',
+			false,
+			'Shows Keybinds'
+		})
+		Toggles.KeybindShower:OnChanged(function()
+			self.Library.KeybindFrame.Visible = Toggles.KeybindShower.Value;
+		end)
+		
         section:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'End', NoUI = true, Text = 'Menu keybind' })
 
         self.Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
