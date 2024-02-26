@@ -203,6 +203,19 @@ local SaveManager = {} do
 
 		local section = tab:AddRightGroupbox('Configuration')
 
+		section:AddToggle('KeybindShower', {
+			Text = 'Show Keybinds',
+			false,
+			'Shows Keybinds'
+		})
+		RainToggles.KeybindShower:OnChanged(function()
+			self.Library.KeybindFrame.Visible = RainToggles.KeybindShower.Value;
+		end)
+		
+        section:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'End', NoUI = true, Text = 'Menu keybind' })
+
+        self.Library.ToggleKeybind = RainOptions.MenuKeybind -- Allows you to have a custom keybind for the menu
+
 		section:AddInput('SaveManager_ConfigName',    { Text = 'Config name' })
 		section:AddDropdown('SaveManager_ConfigList', { Text = 'Config list', Values = self:RefreshConfigList(), AllowNull = true })
 
